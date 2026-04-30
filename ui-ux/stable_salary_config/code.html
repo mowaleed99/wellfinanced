@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#b8c3ff",
+                    "primary-container": "#2e5bff",
+                    "on-tertiary-container": "#ffece6",
+                    "on-primary": "#002388",
+                    "on-secondary-fixed-variant": "#6700b5",
+                    "secondary-fixed-dim": "#dcb8ff",
+                    "on-tertiary-fixed-variant": "#812800",
+                    "on-secondary-fixed": "#2c0051",
+                    "error": "#ffb4ab",
+                    "surface-container-high": "#282933",
+                    "on-secondary-container": "#dcb7ff",
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "secondary-container": "#7701d0",
+                    "on-tertiary": "#5b1a00",
+                    "tertiary-container": "#c24100",
+                    "background": "#11131c",
+                    "primary": "#b8c3ff",
+                    "on-error": "#690005",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed": "#efdbff",
+                    "surface-bright": "#373943",
+                    "primary-fixed-dim": "#b8c3ff",
+                    "inverse-primary": "#124af0",
+                    "tertiary-fixed": "#ffdbcf",
+                    "on-background": "#e2e1ef",
+                    "inverse-surface": "#e2e1ef",
+                    "outline": "#8e90a2",
+                    "on-primary-fixed-variant": "#0035be",
+                    "surface-dim": "#11131c",
+                    "outline-variant": "#434656",
+                    "on-primary-fixed": "#001356",
+                    "tertiary": "#ffb59b",
+                    "on-secondary": "#480081",
+                    "error-container": "#93000a",
+                    "surface-variant": "#33343e",
+                    "secondary": "#dcb8ff",
+                    "primary-fixed": "#dde1ff",
+                    "on-primary-container": "#efefff",
+                    "surface-container-low": "#191b24",
+                    "on-surface": "#e2e1ef",
+                    "surface-variant": "#33343e",
+                    "on-surface-variant": "#c4c5d9",
+                    "inverse-on-surface": "#2e303a",
+                    "surface-container-lowest": "#0c0e17",
+                    "on-tertiary-fixed": "#380d00",
+                    "surface-container-highest": "#33343e",
+                    "surface-container": "#1d1f29"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "gutter": "12px",
+                    "stack-sm": "8px",
+                    "unit": "4px",
+                    "stack-lg": "24px",
+                    "container-padding": "20px"
+            },
+            "fontFamily": {
+                    "body-base": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "data-mono": ["Space Grotesk"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-base": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "data-mono": ["18px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "500"}],
+                    "display-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(17, 19, 28, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .inner-glow-primary {
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 0 20px rgba(46, 91, 255, 0.15);
+        }
+        .rim-light {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            background: #1d1f29;
+            border-radius: 3px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #2e5bff;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -7px;
+            box-shadow: 0 0 10px rgba(46, 91, 255, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-base min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="bg-slate-950/80 backdrop-blur-lg text-blue-500 font-sans antialiased font-semibold tracking-tight docked full-width top-0 border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] flex justify-between items-center w-full px-5 py-3 h-16 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined hover:bg-white/5 transition-colors p-2 rounded-full active:scale-95 transition-transform duration-150 text-slate-400">arrow_back</button>
+<h1 class="text-lg font-black tracking-tighter text-white uppercase">Stable Salary</h1>
+</div>
+<div class="flex items-center gap-3">
+<img alt="Profile" class="w-8 h-8 rounded-full border border-white/20" data-alt="Close up portrait of a professional man with a friendly expression in a modern studio setting with blue ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0uU-Be8_qdOfhTE1gJv1NVfRDJ0VksF7PGwvmczJM5uSVCWXDZJkBQM8SOvhuGra2pkmeeA8b5hOzW-TVscOhLrojVaDaAMbOfsMtz_27RbY3x1D2fbyrI3fXneuqxIA6Y6aV7g1ab2AvhMOaMMPFIBouJphOR5MVAI4Asjd5jHVsLI9Xgp6nSDovnMX8yeupvemsWQJ0Owdm0gnnWKiollWShAKzOqZSqL1tF19g9zipFi7sFZda-io0FHMW0gpy8yDXdrMdxdIJ"/>
+</div>
+</header>
+<main class="px-container-padding pt-stack-lg max-w-4xl mx-auto space-y-stack-lg">
+<!-- Hero Recommendation Card -->
+<section class="glass-card rounded-xl p-stack-lg relative overflow-hidden rim-light bg-gradient-to-br from-primary-container/20 to-transparent">
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-stack-md">
+<div class="space-y-unit">
+<p class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Recommended Monthly Payout</p>
+<h2 class="font-display-lg text-display-lg text-white">$6,500<span class="text-primary-container">.00</span></h2>
+<p class="font-body-base text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-green-400 text-[18px]">verified</span>
+                        Optimized for long-term stability
+                    </p>
+</div>
+<div class="w-full md:w-auto">
+<button class="w-full md:w-auto bg-primary-container text-white px-stack-lg py-3 rounded-lg font-headline-md text-body-base inner-glow-primary active:scale-95 transition-all">
+                        Update Payout
+                    </button>
+</div>
+</div>
+<!-- Decorative Mesh -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/10 blur-3xl rounded-full"></div>
+</section>
+<!-- Bento Configuration Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg">
+<!-- Safety Buffer Adjustment -->
+<div class="glass-card rounded-xl p-stack-lg rim-light space-y-stack-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">security</span>
+<h3 class="font-headline-md text-body-base text-white">Safety Buffer</h3>
+</div>
+<span class="font-data-mono text-data-mono text-primary">15%</span>
+</div>
+<div class="py-4">
+<input class="w-full" max="40" min="0" type="range" value="15"/>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">
+                    Allocating $1,147 monthly to your "Dry Season" reserve. This ensures 4 months of stability if income drops to zero.
+                </p>
+</div>
+<!-- Historical Context -->
+<div class="glass-card rounded-xl p-stack-lg rim-light space-y-stack-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">history</span>
+<h3 class="font-headline-md text-body-base text-white">Income Baseline</h3>
+</div>
+<div class="flex items-end gap-3 h-24 items-end">
+<!-- Simple bar chart mockup -->
+<div class="flex-1 bg-surface-container rounded-t-sm h-1/2"></div>
+<div class="flex-1 bg-surface-container rounded-t-sm h-3/4"></div>
+<div class="flex-1 bg-primary-container/40 rounded-t-sm h-full"></div>
+<div class="flex-1 bg-surface-container rounded-t-sm h-2/3"></div>
+<div class="flex-1 bg-surface-container rounded-t-sm h-1/2"></div>
+<div class="flex-1 bg-surface-container rounded-t-sm h-4/5"></div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">
+                    Based on your 12-month average of <span class="text-white">$7,820</span>.
+                </p>
+</div>
+<!-- Calculation Breakdown -->
+<div class="glass-card rounded-xl p-stack-lg rim-light md:col-span-2">
+<h3 class="font-headline-md text-body-base text-white mb-stack-md">Salary Calculation</h3>
+<div class="space-y-gutter">
+<div class="flex justify-between items-center py-2 border-b border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">payments</span>
+<span class="font-body-base">Gross Monthly Average</span>
+</div>
+<span class="font-data-mono text-white">$7,820.00</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error">account_balance_wallet</span>
+<span class="font-body-base">Estimated Tax Provision</span>
+</div>
+<span class="font-data-mono text-error">-$1,564.00</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">savings</span>
+<span class="font-body-base">Safety Buffer (15%)</span>
+</div>
+<span class="font-data-mono text-primary">-$1,147.00</span>
+</div>
+<div class="flex justify-between items-center py-3 bg-white/5 rounded-lg px-4 mt-stack-md">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-400" data-weight="fill">check_circle</span>
+<span class="font-headline-md text-body-base text-white">Target Net Salary</span>
+</div>
+<span class="font-data-mono text-green-400 text-headline-md">$5,109.00</span>
+</div>
+</div>
+</div>
+<!-- Insights Section -->
+<div class="glass-card rounded-xl p-stack-lg rim-light bg-gradient-to-tr from-secondary-container/10 to-transparent">
+<h3 class="font-headline-md text-body-base text-white flex items-center gap-2 mb-stack-sm">
+<span class="material-symbols-outlined text-secondary">psychology</span>
+                    AI Insight
+                </h3>
+<p class="font-body-base text-on-surface-variant leading-relaxed">
+                    Your current "Burn Rate" is <span class="text-white">$4,200</span>. Setting your salary to <span class="text-white">$6,500</span> leaves you with a healthy surplus of $2,300 for reinvestment and personal growth.
+                </p>
+</div>
+<!-- Stability Score -->
+<div class="glass-card rounded-xl p-stack-lg rim-light border-green-500/20 bg-green-500/5">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-body-base text-white">Stability Score</h3>
+<div class="text-green-400 font-display-lg text-headline-md">94/100</div>
+</div>
+<div class="mt-stack-md h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-green-500 w-[94%] shadow-[0_0_10px_rgba(34,197,94,0.4)]"></div>
+</div>
+<p class="mt-stack-sm text-label-sm font-label-sm text-on-surface-variant">
+                    Top 5% of freelancers. Your current configuration is highly resilient to market fluctuations.
+                </p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Hidden on Web) -->
+<nav class="md:hidden bg-slate-950/90 backdrop-blur-2xl fixed bottom-0 w-full border-t border-white/10 rounded-t-2xl shadow-[0_-10px_20px_rgba(46,91,255,0.05)] z-50 flex justify-around items-center px-4 pb-6 pt-3">
+<div class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 hover:text-blue-400 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-sans text-[10px] font-medium tracking-wide">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 hover:text-blue-400 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-sans text-[10px] font-medium tracking-wide">Activity</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 hover:text-blue-400 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-sans text-[10px] font-medium tracking-wide">Insights</span>
+</div>
+<div class="flex flex-col items-center justify-center text-blue-500 bg-blue-500/10 rounded-xl px-3 py-1 ring-1 ring-blue-500/20 active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-weight="fill">settings</span>
+<span class="font-sans text-[10px] font-medium tracking-wide">Settings</span>
+</div>
+</nav>
+</body></html>
