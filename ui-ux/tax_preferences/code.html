@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#b8c3ff",
+                    "primary-container": "#2e5bff",
+                    "on-tertiary-container": "#ffece6",
+                    "on-primary": "#002388",
+                    "on-secondary-fixed-variant": "#6700b5",
+                    "secondary-fixed-dim": "#dcb8ff",
+                    "on-tertiary-fixed-variant": "#812800",
+                    "on-secondary-fixed": "#2c0051",
+                    "error": "#ffb4ab",
+                    "surface-container-high": "#282933",
+                    "on-secondary-container": "#dcb7ff",
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "secondary-container": "#7701d0",
+                    "on-tertiary": "#5b1a00",
+                    "tertiary-container": "#c24100",
+                    "background": "#11131c",
+                    "primary": "#b8c3ff",
+                    "on-error": "#690005",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed": "#efdbff",
+                    "surface-bright": "#373943",
+                    "primary-fixed-dim": "#b8c3ff",
+                    "inverse-primary": "#124af0",
+                    "tertiary-fixed": "#ffdbcf",
+                    "on-background": "#e2e1ef",
+                    "inverse-surface": "#e2e1ef",
+                    "outline": "#8e90a2",
+                    "on-primary-fixed-variant": "#0035be",
+                    "surface-dim": "#11131c",
+                    "outline-variant": "#434656",
+                    "on-primary-fixed": "#001356",
+                    "tertiary": "#ffb59b",
+                    "on-secondary": "#480081",
+                    "error-container": "#93000a",
+                    "surface-variant": "#33343e",
+                    "secondary": "#dcb8ff",
+                    "primary-fixed": "#dde1ff",
+                    "on-primary-container": "#efefff",
+                    "surface-container-low": "#191b24",
+                    "on-surface": "#e2e1ef",
+                    "surface": "#11131c",
+                    "on-surface-variant": "#c4c5d9",
+                    "inverse-on-surface": "#2e303a",
+                    "surface-container-lowest": "#0c0e17",
+                    "on-tertiary-fixed": "#380d00",
+                    "surface-container-highest": "#33343e",
+                    "surface-container": "#1d1f29"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "gutter": "12px",
+                    "stack-sm": "8px",
+                    "unit": "4px",
+                    "stack-lg": "24px",
+                    "container-padding": "20px"
+            },
+            "fontFamily": {
+                    "body-base": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "data-mono": ["Space Grotesk"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-base": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "data-mono": ["18px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "500"}],
+                    "display-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(29, 31, 41, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .inner-glow-primary {
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
+        }
+        .neon-border {
+            border: 1px solid rgba(46, 91, 255, 0.4);
+            box-shadow: 0 0 15px rgba(46, 91, 255, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-base antialiased min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-slate-950/80 backdrop-blur-lg docked full-width top-0 border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] flex justify-between items-center w-full px-5 py-3 h-16 sticky z-50">
+<div class="flex items-center gap-stack-md">
+<button class="text-slate-400 active:scale-95 transition-transform duration-150 hover:bg-white/5 p-2 rounded-lg">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-sans antialiased font-semibold tracking-tight text-lg font-black tracking-tighter text-white uppercase">FinAI Freelance</h1>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-full border border-white/10 overflow-hidden active:scale-95 transition-transform duration-150">
+<img alt="User" class="w-full h-full object-cover" data-alt="close-up portrait of a tech-savvy professional with soft blue studio lighting and a clean dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqhFBJCVIM3iix_fDX4Olq7p7ymnSv3Jbo-6ajkcHE_qL0KkM-tk-kURemPr3UH-z7OGcirUR7ZOkFmp8Ybp-5ajsQ3rlKcSYJPGXijc6Kecqs0qtnQxutu3ouRKk25UgmlMUFW8r8DxAX8EktDq25M9YVqHjn6x_BTp26mndObHfsevF7SHNrTdeB7M-oUuLVwBuJT4SUSlwY7F9fYHNxcouE3Z-wQlETbR7Ukg5qYy8on6eEnARw7QMq8miuw8-7pETezgyrHH0v"/>
+</div>
+</div>
+</header>
+<main class="px-container-padding pt-stack-lg max-w-4xl mx-auto space-y-stack-lg">
+<!-- Page Title -->
+<section class="space-y-unit">
+<h2 class="font-headline-md text-headline-md text-on-surface">Tax Preferences</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Configure your automated AI tax agent settings</p>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<!-- Automated Withholding Percentage -->
+<div class="glass-card rounded-xl p-stack-md flex flex-col justify-between space-y-stack-md border-primary-container/20 inner-glow-primary">
+<div class="flex justify-between items-start">
+<div class="bg-primary-container/20 p-stack-sm rounded-lg">
+<span class="material-symbols-outlined text-primary-container" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary">OPTIMIZED BY AI</span>
+</div>
+<div class="space-y-unit">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Automated Tax Withholding</p>
+<div class="flex items-baseline gap-unit">
+<span class="font-data-mono text-[40px] text-white leading-none">20</span>
+<span class="font-data-mono text-headline-md text-primary">%</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-container to-blue-400 w-1/5"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Based on your projected annual earnings of $84,200.</p>
+</div>
+<!-- Next Payment Due -->
+<div class="glass-card rounded-xl p-stack-md space-y-stack-md relative overflow-hidden">
+<div class="absolute top-0 right-0 p-stack-md">
+<span class="material-symbols-outlined text-tertiary/40 text-4xl" data-icon="event_upcoming">event_upcoming</span>
+</div>
+<div class="space-y-stack-sm">
+<div class="bg-tertiary-container/20 p-stack-sm w-fit rounded-lg">
+<span class="material-symbols-outlined text-tertiary" data-icon="schedule">schedule</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Next Payment Due</p>
+<h3 class="font-headline-md text-headline-md text-white">April 15, 2024</h3>
+</div>
+<div class="flex items-center gap-stack-sm bg-surface-container-highest/50 p-stack-sm rounded-lg">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="info">info</span>
+<p class="font-label-sm text-label-sm text-tertiary">Estimated: $4,240.50</p>
+</div>
+<button class="w-full py-stack-sm bg-tertiary-container text-on-tertiary-container font-label-sm rounded-lg hover:opacity-90 active:scale-95 transition-all">
+                    Prepare Form 1040-ES
+                </button>
+</div>
+<!-- Toggles & Settings -->
+<div class="md:col-span-2 glass-card rounded-xl overflow-hidden divide-y divide-white/5">
+<!-- Toggle 1 -->
+<div class="p-stack-md flex items-center justify-between hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="auto_mode">auto_mode</span>
+</div>
+<div>
+<p class="font-body-base text-body-base text-white font-semibold">Auto-save for Taxes</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Move withholding amount to Tax Vault daily</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Toggle 2 -->
+<div class="p-stack-md flex items-center justify-between hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="notifications_active">notifications_active</span>
+</div>
+<div>
+<p class="font-body-base text-body-base text-white font-semibold">Reminder Alerts</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Notify me 7 days before filing deadlines</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+<!-- Historical Tax Payments -->
+<div class="md:col-span-2 glass-card rounded-xl p-stack-md space-y-stack-md">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-md text-[20px] text-white">Payment History</h4>
+<button class="font-label-sm text-label-sm text-primary flex items-center gap-unit">
+                        Export CSV <span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+</button>
+</div>
+<div class="space-y-stack-sm">
+<!-- History Item 1 -->
+<div class="flex items-center justify-between p-stack-sm rounded-lg border border-white/5 bg-white/2 hover:border-primary-container/30 transition-all">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded bg-green-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-green-400" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<p class="font-body-base text-white text-sm font-medium">Q4 Estimated Payment</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Jan 15, 2024</p>
+</div>
+</div>
+<p class="font-data-mono text-white text-sm">$3,850.00</p>
+</div>
+<!-- History Item 2 -->
+<div class="flex items-center justify-between p-stack-sm rounded-lg border border-white/5 bg-white/2 hover:border-primary-container/30 transition-all">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded bg-green-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-green-400" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<p class="font-body-base text-white text-sm font-medium">Q3 Estimated Payment</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Oct 15, 2023</p>
+</div>
+</div>
+<p class="font-data-mono text-white text-sm">$3,210.45</p>
+</div>
+<!-- History Item 3 -->
+<div class="flex items-center justify-between p-stack-sm rounded-lg border border-white/5 bg-white/2 hover:border-primary-container/30 transition-all">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded bg-green-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-green-400" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<p class="font-body-base text-white text-sm font-medium">Q2 Estimated Payment</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Jul 15, 2023</p>
+</div>
+</div>
+<p class="font-data-mono text-white text-sm">$4,100.20</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Support Section -->
+<div class="p-stack-md bg-primary-container/10 border border-primary-container/20 rounded-2xl flex flex-col md:flex-row items-center gap-stack-md justify-between">
+<div class="flex items-center gap-stack-md text-center md:text-left">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center shadow-[0_0_20px_rgba(46,91,255,0.3)]">
+<span class="material-symbols-outlined text-white" data-icon="smart_toy">smart_toy</span>
+</div>
+<div>
+<p class="font-body-base text-white font-bold">Unsure about your tax bracket?</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">FinAI can analyze your 1099s and optimize your withholding.</p>
+</div>
+</div>
+<button class="px-stack-lg py-stack-sm bg-white text-primary-container font-bold rounded-xl active:scale-95 transition-transform">
+                Consult AI Assistant
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-slate-950/90 backdrop-blur-2xl border-t border-white/10 rounded-t-2xl shadow-[0_-10px_20px_rgba(46,91,255,0.05)]">
+<button class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 hover:text-blue-400 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-sans text-[10px] font-medium tracking-wide">Dashboard</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 hover:text-blue-400 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-sans text-[10px] font-medium tracking-wide">Activity</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 hover:text-blue-400 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-sans text-[10px] font-medium tracking-wide">Insights</span>
+</button>
+<button class="flex flex-col items-center justify-center text-blue-500 bg-blue-500/10 rounded-xl px-3 py-1 ring-1 ring-blue-500/20 active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-sans text-[10px] font-medium tracking-wide">Settings</span>
+</button>
+</nav>
+</body></html>
