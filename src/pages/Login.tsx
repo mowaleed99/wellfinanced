@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { api } from '../services/api';
+import { authApi } from '../services/api';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      const response = await api.login({ email, password });
+      const response = await authApi.login({ email, password });
       console.log('Logged in as', response.user);
       setIsLoading(false);
       navigate('/dashboard');

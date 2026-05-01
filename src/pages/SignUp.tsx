@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { api } from '../services/api';
+import { authApi } from '../services/api';
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -24,12 +24,17 @@ export default function SignUp() {
     setIsLoading(true);
 
     try {
-      const response = await api.signup(formData);
+      const response = await authApi.signup(formData);
       console.log('Account created for', response.user);
       setIsLoading(false);
-      navigate('/dashboard');
+      // If no token, email verification is required — redirect to login with a message
+      if (!response.token) {
+        navigate('/login', { state: { message: 'Account created! Please verify your email, then log in.' } });
+      } else {
+        navigate('/dashboard');
+      }
     } catch (err) {
-      setError('Registration failed. Please try again.');
+      setError(err instanceof Error ? err.message : 'Registration failed. Please try again.');
       setIsLoading(false);
     }
   };

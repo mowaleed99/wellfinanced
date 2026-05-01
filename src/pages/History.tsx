@@ -1,15 +1,62 @@
 import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useFinance } from '../context/FinanceContext';
+import { Record } from '../types/records';
+import { EmptyState } from '../components/EmptyState';
+import { ListSkeleton } from '../components/Skeleton';
 
 export default function History() {
+  const { records, linkedAccounts, counterparties, isLoading, error } = useFinance();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const filterAccountId = queryParams.get('accountId');
   const [search, setSearch] = useState('');
   const [activeFilter, setActiveFilter] = useState('all');
   const [showTip, setShowTip] = useState(true);
 
   const filters = [
     { id: 'all', label: 'All Types', icon: 'filter_alt', color: 'text-white' },
-    { id: 'income', label: 'Income', icon: 'trending_up', color: 'text-[#4ADE80]' },
-    { id: 'expense', label: 'Expense', icon: 'trending_down', color: 'text-[#FCA5A5]' },
+    { id: 'inflow', label: 'Income', icon: 'trending_up', color: 'text-[#4ADE80]' },
+    { id: 'outflow', label: 'Expense', icon: 'trending_down', color: 'text-[#FCA5A5]' },
+    { id: 'transfer', label: 'Transfer', icon: 'swap_horiz', color: 'text-blue-400' },
   ];
+
+  const filteredRecords = records.filter((r) => {
+    // 1. Account deep-link filter
+    if (filterAccountId) {
+      if (r.to_account_id !== filterAccountId && r.from_account_id !== filterAccountId) {
+        return false;
+      }
+    }
+
+    // 2. Type filter
+    if (activeFilter !== 'all' && r.direction !== activeFilter) return false;
+
+    // 3. Search query filter
+    if (search) {
+      const q = search.toLowerCase();
+      let title = '';
+      if (r.direction === 'transfer') {
+         title = r.title.toLowerCase();
+      } else {
+         const cp = counterparties.find(c => c.id === r.counterparty_id);
+         title = (r.title || cp?.name || '').toLowerCase();
+      }
+      return title.includes(q) || r.amount.toString().includes(q);
+    }
+    return true;
+  });
+
+  const getAccountName = (id?: string) => {
+    if (!id) return 'Unknown Account';
+    return linkedAccounts.find(a => a.id === id)?.name || 'Unknown Account';
+  };
+
+  const getCounterpartyName = (record: Record) => {
+    if (record.direction === 'transfer') return record.title;
+    const cp = counterparties.find(c => c.id === record.counterparty_id);
+    return cp?.name || record.title || 'Unknown Source';
+  };
 
   return (
     <div className="px-container-padding pb-10 pt-6 bg-[#11131C] min-h-full">
@@ -29,7 +76,7 @@ export default function History() {
       </div>
 
       {/* Filter Pills */}
-      <div className="flex gap-2 overflow-x-auto hide-scrollbar mb-8">
+      <div className="flex gap-2 overflow-x-auto hide-scrollbar mb-8 pb-2">
         {filters.map(f => (
           <button
             key={f.id}
@@ -49,25 +96,74 @@ export default function History() {
       {/* Section Header */}
       <div className="flex justify-between items-center mb-5 px-1">
         <h2 className="text-[20px] font-bold text-white">Recent Activity</h2>
-        <span className="text-[11px] text-slate-500 font-medium">Showing 0 results</span>
+        <span className="text-[11px] text-slate-500 font-medium">Showing {filteredRecords.length} results</span>
       </div>
 
-      {/* Empty State */}
-      <div className="rounded-[20px] p-8 bg-[#1A1C29] border border-white/5 flex flex-col items-center text-center mb-6">
-        <div className="w-20 h-20 rounded-full bg-[#11131C] flex items-center justify-center mb-5 border border-white/5">
-          <span className="material-symbols-outlined text-slate-500 text-[32px]">manage_search</span>
+      {error && (
+        <div className="mb-6">
+          <EmptyState 
+            icon="error" 
+            title="Failed to Load History" 
+            message={error} 
+            action={{ label: "Retry", onClick: () => window.location.reload() }}
+          />
         </div>
-        <h3 className="text-[20px] font-bold text-white mb-2">No transactions found</h3>
-        <p className="text-[13px] text-slate-400 leading-relaxed max-w-[240px] mb-6">
-          We couldn't find any data matching your current filters. Try adjusting the date range or search terms.
-        </p>
-        <button
-          onClick={() => { setSearch(''); setActiveFilter('all'); }}
-          className="px-5 py-2.5 rounded-xl bg-[#11131C] border border-white/10 text-[13px] font-bold text-slate-300 hover:bg-white/5 transition-colors active:scale-95"
-        >
-          Clear All Filters
-        </button>
+      )}
+
+      {/* List */}
+      {isLoading ? (
+        <ListSkeleton count={5} />
+      ) : filteredRecords.length > 0 ? (
+        <div className="space-y-3 mb-6">
+          {filteredRecords.map((r) => (
+            <Link key={r.id} to={`/transaction/${r.id}`} className="block">
+              <div className="bg-[#1A1C29] border border-white/5 rounded-[20px] p-4 flex items-center gap-4 hover:bg-white/5 transition-colors active:scale-[0.98]">
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${
+                  r.direction === 'inflow' ? 'bg-[#4ADE80]/20 text-[#4ADE80]' :
+                  r.direction === 'outflow' ? 'bg-[#FCA5A5]/20 text-[#FCA5A5]' :
+                  'bg-blue-500/20 text-blue-400'
+                }`}>
+                  <span className="material-symbols-outlined">
+                    {r.direction === 'inflow' ? 'arrow_downward' : r.direction === 'outflow' ? 'arrow_upward' : 'swap_horiz'}
+                  </span>
+                </div>
+              
+              <div className="flex-1 min-w-0">
+                <h3 className="text-white font-bold text-[15px] truncate">{getCounterpartyName(r)}</h3>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-[12px] text-slate-400 truncate max-w-[120px]">
+                    {r.direction === 'inflow' ? getAccountName(r.to_account_id) :
+                     r.direction === 'outflow' ? getAccountName(r.from_account_id) :
+                     `${getAccountName(r.from_account_id)} → ${getAccountName(r.to_account_id)}`}
+                  </span>
+                  <span className="w-1 h-1 rounded-full bg-slate-600 shrink-0"></span>
+                  <span className="text-[12px] text-slate-500 capitalize">{r.direction !== 'transfer' ? r.flow_category.replace(/_/g, ' ') : 'Transfer'}</span>
+                </div>
+              </div>
+              
+              <div className="text-right shrink-0">
+                <div className={`font-data-mono text-[16px] font-bold ${
+                  r.direction === 'inflow' ? 'text-[#4ADE80]' : 
+                  r.direction === 'outflow' ? 'text-white' : 'text-blue-400'
+                }`}>
+                  {r.direction === 'inflow' ? '+' : r.direction === 'outflow' ? '-' : ''}${r.amount.toFixed(2)}
+                </div>
+                <div className="text-[11px] text-slate-500 mt-1">{new Date(r.date).toLocaleDateString()}</div>
+              </div>
+            </div>
+          </Link>
+        ))}
       </div>
+      ) : !error && (
+        <div className="mb-6">
+          <EmptyState 
+            icon="manage_search"
+            title="No records found"
+            message="We couldn't find any data matching your current filters."
+            action={{ label: "Clear All Filters", onClick: () => { setSearch(''); setActiveFilter('all'); } }}
+          />
+        </div>
+      )}
 
       {/* AI Smart Search Tips */}
       {showTip && (

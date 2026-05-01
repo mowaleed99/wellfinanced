@@ -24,10 +24,10 @@ export default function BottomNavBar() {
   return (
     <nav className="fixed bottom-0 w-full max-w-md z-50 flex justify-between items-center px-4 py-3 pb-safe bg-slate-900/90 backdrop-blur-lg border-t border-white/10 rounded-t-2xl shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
       <NavItem to="/dashboard" icon="home" label="Home" isActive={location.pathname === '/dashboard'} />
-      <NavItem to="/plans" icon="assignment" label="Plans" isActive={location.pathname === '/plans'} />
-      <NavItem to="/ai-assistant" icon="auto_awesome" label="AI Assistant" isActive={location.pathname === '/ai-assistant'} />
-      <NavItem to="/timeline" icon="view_timeline" label="Timeline" isActive={location.pathname === '/timeline'} />
-      <NavItem to="/history" icon="history" label="History" isActive={location.pathname === '/history'} />
+      <NavItem to="/linked-accounts" icon="account_balance" label="Accounts" isActive={location.pathname === '/linked-accounts'} />
+      <NavItem to="/history" icon="receipt_long" label="History" isActive={location.pathname === '/history' || location.pathname.startsWith('/transaction')} />
+      <NavItem to="/installments" icon="event_repeat" label="Installments" isActive={location.pathname === '/installments'} />
+      <NavItem to="/notifications" icon="notifications" label="Alerts" isActive={location.pathname === '/notifications'} />
     </nav>
   );
 }

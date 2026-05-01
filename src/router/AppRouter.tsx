@@ -34,6 +34,9 @@ import SearchHistory from '../pages/SearchHistory';
 import PriorityPayments from '../pages/PriorityPayments';
 import NotificationsCenter from '../pages/NotificationsCenter';
 import HelpSupport from '../pages/HelpSupport';
+import Installments from '../pages/Installments';
+import AccountDetails from '../pages/AccountDetails';
+import InstallmentDetails from '../pages/InstallmentDetails';
 
 export default function AppRouter() {
   return (
@@ -73,6 +76,9 @@ export default function AppRouter() {
           <Route path="/priority-payments" element={<PriorityPayments />} />
           <Route path="/notifications" element={<NotificationsCenter />} />
           <Route path="/help-support" element={<HelpSupport />} />
+          <Route path="/installments" element={<Installments />} />
+          <Route path="/accounts/:id" element={<AccountDetails />} />
+          <Route path="/installments/:id" element={<InstallmentDetails />} />
         </Route>
       </Routes>
     </BrowserRouter>
